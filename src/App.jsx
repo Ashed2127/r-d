@@ -1,166 +1,143 @@
-import { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import { useEffect, useState } from 'react'
 import './App.css'
 
+const initialStocks = [
+  { symbol: 'AAPL', name: 'Apple Inc.', price: 176.21, change: 0.32 },
+  { symbol: 'MSFT', name: 'Microsoft Corp.', price: 391.06, change: -0.18 },
+  { symbol: 'TSLA', name: 'Tesla Inc.', price: 244.27, change: 1.22 },
+  { symbol: 'AMZN', name: 'Amazon.com Inc.', price: 174.35, change: -0.73 },
+  { symbol: 'NVDA', name: 'NVIDIA Corp.', price: 1012.41, change: 0.94 },
+]
+
+const formatCurrency = value => value.toLocaleString('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 2,
+})
+
+const formatChange = value => `${value > 0 ? '+' : ''}${value.toFixed(2)}%`
+
+const tickPrice = stock => {
+  const drift = stock.price * (Math.random() * 0.015 - 0.0075)
+  const nextPrice = Math.max(1, stock.price + drift)
+  const change = ((nextPrice - stock.price) / stock.price) * 100
+  return {
+    ...stock,
+    price: Number(nextPrice.toFixed(2)),
+    change: Number(change.toFixed(2)),
+  }
+}
+
 function App() {
-  const canvasRef = useRef(null)
+  const [stocks, setStocks] = useState(initialStocks)
+  const [symbolInput, setSymbolInput] = useState('')
+  const [message, setMessage] = useState('Live watchlist refreshing every 2 seconds')
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const interval = setInterval(() => {
+      setStocks(prevStocks => prevStocks.map(tickPrice))
+    }, 2000)
 
-    const scene = new THREE.Scene()
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
-    camera.position.set(0, 0, 6)
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true })
-    renderer.setPixelRatio(window.devicePixelRatio)
-
-    const wrapper = canvas.parentElement
-    const resize = () => {
-      if (!wrapper) return
-      const width = wrapper.clientWidth
-      const height = wrapper.clientHeight
-      camera.aspect = width / height
-      camera.updateProjectionMatrix()
-      renderer.setSize(width, height, false)
-    }
-
-    const geometry = new THREE.TorusKnotGeometry(1.2, 0.35, 180, 32)
-    const material = new THREE.MeshPhysicalMaterial({
-      color: 0x8f6eff,
-      roughness: 0.35,
-      metalness: 0.65,
-      clearcoat: 0.8,
-      clearcoatRoughness: 0.2,
-      emissive: 0x5128ff,
-      emissiveIntensity: 0.15,
-    })
-
-    const mesh = new THREE.Mesh(geometry, material)
-    scene.add(mesh)
-
-    const light1 = new THREE.PointLight(0xffffff, 1.2, 8)
-    light1.position.set(2.5, 2, 2)
-    scene.add(light1)
-
-    const light2 = new THREE.PointLight(0x9b7eff, 0.9, 10)
-    light2.position.set(-2.3, -1.4, 2.8)
-    scene.add(light2)
-
-    const ambient = new THREE.AmbientLight(0x9a8aff, 0.35)
-    scene.add(ambient)
-
-    resize()
-    window.addEventListener('resize', resize)
-
-    let frameId = null
-    const animate = () => {
-      frameId = requestAnimationFrame(animate)
-      mesh.rotation.x += 0.006
-      mesh.rotation.y += 0.009
-      mesh.rotation.z += 0.004
-      renderer.render(scene, camera)
-    }
-
-    animate()
-
-    return () => {
-      if (frameId) cancelAnimationFrame(frameId)
-      window.removeEventListener('resize', resize)
-      renderer.dispose()
-      geometry.dispose()
-      material.dispose()
-      scene.clear()
-    }
+    return () => clearInterval(interval)
   }, [])
 
+  const handleAddSymbol = event => {
+    event.preventDefault()
+    const symbol = symbolInput.trim().toUpperCase()
+    if (!symbol) return
+    if (stocks.some(stock => stock.symbol === symbol)) {
+      setMessage(`${symbol} is already on the watchlist`)
+      return
+    }
+
+    setStocks(prev => [
+      ...prev,
+      {
+        symbol,
+        name: `${symbol} Holdings`,
+        price: Number((Math.random() * 460 + 40).toFixed(2)),
+        change: Number((Math.random() * 2 - 1).toFixed(2)),
+      },
+    ])
+    setSymbolInput('')
+    setMessage(`${symbol} added to watchlist`)
+  }
+
   return (
-    <main className="portfolio">
-      <section className="hero-wrapper">
-        <canvas ref={canvasRef} className="hero-canvas" aria-hidden="true" />
-        <header className="hero-portfolio">
-          <div className="intro">
-            <span className="eyebrow">Portfolio</span>
-            <h1>Ashedbir Diriba</h1>
-            <p className="title">Junior Developer</p>
-            <p className="description">
-              I build clean, responsive React applications with modern tooling and modern 3D visuals.
-            </p>
-            <div className="cta-row">
-              <a href="#work" className="button primary">
-                View work
-              </a>
-              <a href="#contact" className="button secondary">
-                Contact me
-              </a>
-            </div>
-          </div>
+    <main className="tracker-page">
+      <section className="tracker-hero">
+        <div>
+          <span className="eyebrow">Realtime dashboard</span>
+          <h1>Stock Tracker</h1>
+          <p className="description">
+            Monitor market momentum and active price movement with a live-style watchlist. The page simulates real-time updates and makes it easy to follow top tickers.
+          </p>
+        </div>
 
-          <div className="stats-card">
-            <div className="stat">
-              <span className="stat-value">3+</span>
-              <span className="stat-label">Featured projects</span>
-            </div>
-            <div className="stat">
-              <span className="stat-value">React</span>
-              <span className="stat-label">Primary stack</span>
-            </div>
-            <div className="stat">
-              <span className="stat-value">Clean</span>
-              <span className="stat-label">Modern code</span>
-            </div>
-          </div>
-        </header>
-      </section>
-
-      <section id="about" className="section">
-        <h2>About me</h2>
-        <p>
-          I am a motivated junior developer specializing in React and Vite. I enjoy turning ideas into
-          intuitive interfaces and writing code that is easy to maintain.
-        </p>
-      </section>
-
-      <section id="work" className="section cards">
-        <h2>Featured work</h2>
-        <div className="card-grid">
-          <article className="card">
-            <h3>React portfolio</h3>
-            <p>A modern portfolio page that highlights skills, projects, and contact details.</p>
+        <div className="hero-grid">
+          <article className="hero-card">
+            <span>Watchlist size</span>
+            <strong>{stocks.length}</strong>
           </article>
-          <article className="card">
-            <h3>UI components</h3>
-            <p>Reusable interface blocks built with accessibility and responsive layout in mind.</p>
-          </article>
-          <article className="card">
-            <h3>Web app prototype</h3>
-            <p>A fast prototype demonstrating user flows, polished layout, and clean design.</p>
+          <article className="hero-card">
+            <span>Status</span>
+            <strong>{message}</strong>
           </article>
         </div>
       </section>
 
-      <section id="skills" className="section">
-        <h2>Skills</h2>
-        <ul className="skills-list">
-          <li>React</li>
-          <li>JavaScript</li>
-          <li>Vite</li>
-          <li>HTML & CSS</li>
-          <li>Responsive design</li>
-          <li>Clean code</li>
-        </ul>
+      <section className="watchlist-panel">
+        <div className="watchlist-header">
+          <div>
+            <h2>My watchlist</h2>
+            <p>Track symbol performance and intraday-style price changes.</p>
+          </div>
+          <form className="symbol-form" onSubmit={handleAddSymbol}>
+            <label htmlFor="symbol">Add ticker</label>
+            <div className="symbol-input-row">
+              <input
+                id="symbol"
+                value={symbolInput}
+                onChange={e => setSymbolInput(e.target.value)}
+                placeholder="e.g. NFLX"
+                aria-label="Stock symbol"
+              />
+              <button type="submit" className="button primary">
+                Add
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div className="stock-grid">
+          {stocks.map(stock => (
+            <article key={stock.symbol} className="stock-card">
+              <div className="stock-row">
+                <div>
+                  <span className="stock-symbol">{stock.symbol}</span>
+                  <p className="stock-name">{stock.name}</p>
+                </div>
+                <span className={`stock-change ${stock.change >= 0 ? 'positive' : 'negative'}`}>
+                  {formatChange(stock.change)}
+                </span>
+              </div>
+              <p className="stock-price">{formatCurrency(stock.price)}</p>
+              <div className="price-bar">
+                <div
+                  className="price-fill"
+                  style={{ width: `${Math.min(100, Math.abs(stock.change) * 3 + 12)}%` }}
+                />
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="contact" className="section contact">
-        <h2>Contact</h2>
+      <section className="tracker-note">
+        <h2>About this tracker</h2>
         <p>
-          I’m available for junior developer opportunities and small projects. Let’s work together to
-          build something great.
+          This demo page uses simulated market movement to show how a realtime stock dashboard could look in a React app. You can add tickers to the watchlist and watch the quote cards update automatically.
         </p>
-        <a href="mailto:hello@ashedbir.dev" className="button primary">
-          Email me
-        </a>
       </section>
     </main>
   )
