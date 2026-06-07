@@ -1,11 +1,10 @@
 FROM node:current-alpine3.23
-RUN addgroup app && adduser -S -G app app
-USER app
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm install
+COPY . .
+RUN chown -R node:node /app
+USER node
 ENV API_URL=http://localhost:3000
-EXPOSE 3000
-
-#shell form
-CMD npm start
+EXPOSE 5173
+CMD ["npm", "start"]
