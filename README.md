@@ -168,3 +168,7 @@ Documentation update iteration 16 for the project.
 <!-- Update #17 - Wed Jun 10 02:28:35 AM EAT 2026 -->
 ## Update 17
 Documentation update iteration 17 for the project.
+
+<!-- Update #18 - Wed Jun 10 02:28:39 AM EAT 2026 -->
+## Update 18
+Documentation update iteration 18 for the project.
