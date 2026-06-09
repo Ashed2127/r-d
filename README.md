@@ -144,3 +144,7 @@ Documentation update iteration 10 for the project.
 <!-- Update #11 - Wed Jun 10 02:28:11 AM EAT 2026 -->
 ## Update 11
 Documentation update iteration 11 for the project.
+
+<!-- Update #12 - Wed Jun 10 02:28:15 AM EAT 2026 -->
+## Update 12
+Documentation update iteration 12 for the project.
