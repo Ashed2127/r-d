@@ -1,55 +1,103 @@
-# React + Vite
+# React + Vite + Docker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get React working in Vite with HMR, ESLint rules, and Docker support for local development.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs)
+This repository is configured for local development with:
+- ⚛️ **React** — A JavaScript library for building user interfaces
+- ⚡ **Vite** — A fast frontend build tool with Hot Module Replacement (HMR)
+- 📏 **ESLint** — A tool for identifying and fixing code quality issues
+- 🐳 **Docker** — Containerized development environment
 
-> This repository is configured for local development with React, Vite, ESLint, and Docker support.
+## Official Plugins
+
+Two official Vite plugins are available for React:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) — uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) — uses [SWC](https://swc.rs)
 
 ## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The React Compiler is **not** enabled on this template because of its impact on dev & build performances.
 
-## Expanding the ESLint configuration
+To add it, see the [official documentation](https://react.dev/learn/react-compiler/installation).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+## Docker Setup
 
+This project includes a `Dockerfile` and `.dockerignore` for containerized development.
 
-## Expanding the ESLint configuration
+### Prerequisites
+- [Docker](https://www.docker.com/) installed on your machine
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+### Build the Image
+```bash
+docker build -t react-docker .
+```
 
-## Expanding the ESLint configuration
+### Run the Container
+```bash
+docker run -p 5173:5173 react-docker
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+The application will be available at [http://localhost:5173](http://localhost:5173).
 
-## Expanding the ESLint configuration
+## Local Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+If you prefer to run the project without Docker:
 
-## Expanding the ESLint configuration
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [npm](https://www.npmjs.com/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
-## Expanding the ESLint configuration
+### Install Dependencies
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+### Start the Dev Server
+```bash
+npm run dev
+```
 
-## Expanding the ESLint configuration
+### Build for Production
+```bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+### Preview the Production Build
+```bash
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## ESLint Configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project....
-..
+If you are developing a production application, we recommend using **TypeScript** with type-aware lint rules enabled.
 
+Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Project Structure
+
+```
+react-docker/
+├── public/              # Static assets served as-is
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/                 # Application source code
+│   ├── assets/          # Images and other imported assets
+│   ├── App.css          # App-level styles
+│   ├── App.jsx          # Main App component
+│   ├── index.css        # Global styles
+│   └── main.jsx         # Application entry point
+├── .dockerignore        # Files excluded from Docker build
+├── .gitignore           # Files excluded from Git
+├── Dockerfile           # Docker build configuration
+├── eslint.config.js     # ESLint configuration
+├── index.html           # HTML entry point
+├── package.json         # Project metadata and dependencies
+└── vite.config.js       # Vite configuration
+```
+
+## License
+
+This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT).
