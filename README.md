@@ -101,3 +101,6 @@ react-docker/
 ## License
 
 This project is open source and available under the [MIT License](https://opensource.org/licenses/MIT)....
+<!-- Update #1 - Wed Jun 10 02:27:33 AM EAT 2026 -->
+## Update 1
+Documentation update iteration 1 for the project.
