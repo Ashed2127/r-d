@@ -108,3 +108,7 @@ Documentation update iteration 1 for the project.
 <!-- Update #2 - Wed Jun 10 02:27:37 AM EAT 2026 -->
 ## Update 2
 Documentation update iteration 2 for the project.
+
+<!-- Update #3 - Wed Jun 10 02:27:41 AM EAT 2026 -->
+## Update 3
+Documentation update iteration 3 for the project.
