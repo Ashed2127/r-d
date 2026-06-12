@@ -128,3 +128,7 @@ Documentation update iteration 6 for the project.
 <!-- Update #7 - Fri Jun 12 05:02:28 AM EAT 2026 -->
 ## Update 7
 Documentation update iteration 7 for the project.
+
+<!-- Update #8 - Fri Jun 12 05:02:30 AM EAT 2026 -->
+## Update 8
+Documentation update iteration 8 for the project.
