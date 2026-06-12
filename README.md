@@ -106,21 +106,9 @@ This project is open source and available under the [MIT License](https://openso
 Documentation update iteration 1 for the project.
 
 <!-- Update #2 - Wed Jun 10 02:27:37 AM EAT 2026 -->
-## Update 2
-Documentation update iteration 2 for the project.
 
-<!-- Update #3 - Wed Jun 10 02:27:41 AM EAT 2026 -->
+Documentation update iteration 6 for the project.
+
+<!-- Update #3 - Fri Jun 12 05:02:19 AM EAT 2026 -->
 ## Update 3
 Documentation update iteration 3 for the project.
-
-<!-- Update #4 - Wed Jun 10 02:27:44 AM EAT 2026 -->
-## Update 4
-Documentation update iteration 4 for the project.
-
-<!-- Update #5 - Wed Jun 10 02:27:48 AM EAT 2026 -->
-## Update 5
-Documentation update iteration 5 for the project.
-
-<!-- Update #6 - Wed Jun 10 02:27:52 AM EAT 2026 -->
-## Update 6
-Documentation update iteration 6 for the project.
