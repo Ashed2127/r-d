@@ -105,46 +105,5 @@ This project is open source and available under the [MIT License](https://openso
 ## Update 1
 Documentation update iteration 1 for the project.
 
-<!-- Update #2 - Wed Jun 10 02:27:37 AM EAT 2026 -->
-
-Documentation update iteration 6 for the project.
-
-<!-- Update #3 - Fri Jun 12 05:02:19 AM EAT 2026 -->
-## Update 3
-Documentation update iteration 3 for the project.
-
-<!-- Update #4 - Fri Jun 12 05:02:22 AM EAT 2026 -->
-## Update 4
-Documentation update iteration 4 for the project.
-
-<!-- Update #5 - Fri Jun 12 05:02:24 AM EAT 2026 -->
-## Update 5
-Documentation update iteration 5 for the project.
-
-<!-- Update #6 - Fri Jun 12 05:02:26 AM EAT 2026 -->
-## Update 6
-Documentation update iteration 6 for the project.
-
-<!-- Update #7 - Fri Jun 12 05:02:28 AM EAT 2026 -->
-## Update 7
-Documentation update iteration 7 for the project.
-
-<!-- Update #8 - Fri Jun 12 05:02:30 AM EAT 2026 -->
-## Update 8
-Documentation update iteration 8 for the project.
-
-<!-- Update #9 - Fri Jun 12 05:02:32 AM EAT 2026 -->
-## Update 9
-Documentation update iteration 9 for the project.
-
-<!-- Update #10 - Fri Jun 12 05:02:35 AM EAT 2026 -->
-## Update 10
-Documentation update iteration 10 for the project.
-
-<!-- Update #11 - Fri Jun 12 05:02:38 AM EAT 2026 -->
-## Update 11
-Documentation update iteration 11 for the project.
-
-<!-- Update #12 - Fri Jun 12 05:02:40 AM EAT 2026 -->
-## Update 12
-Documentation update iteration 12 for the project.
+docker start //start a stopped container
+docker run //start a new contanier
