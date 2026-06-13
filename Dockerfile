@@ -3,6 +3,7 @@ FROM node:22-alpine
 RUN addgroup -S app && adduser -S app -G app
 
 WORKDIR /app
+RUN mkdir data
 
 COPY package*.json ./
 RUN npm install
