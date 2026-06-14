@@ -1,2 +1,9 @@
-node_modules/
+# .dockerignore
+node_modules
+build
+dist
+.git
+.dockerignore
+Dockerfile
+npm-debug.log
 react-docker.tar
