@@ -74,7 +74,7 @@ function App() {
 
       <main className="feed">
         <header className="feed-header">
-          <h1 className="feed-title">Home</h1>
+          <h1 className="feed-title">Home Sweet Home</h1>
           <button className="feed-settings" type="button" aria-label="Settings">
             <SettingsIcon />
           </button>
