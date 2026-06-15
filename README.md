@@ -136,3 +136,11 @@ docker run //start a new contanier
 docker start //start a stopped container
 docker run //start a new contanier
 
+
+
+docker start //start a stopped container
+docker run //start a new contanier
+
+
+docker start //start a stopped container
+docker run //start a new contanier
